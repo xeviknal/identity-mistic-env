@@ -1,0 +1,25 @@
+- name: Fix problem with /dev/tty permissions (for ssh)
+  file: path="/dev/tty" mode=666
+
+- name: Set locale es_ES.UTF8
+  command: locale-gen es_ES.UTF-8
+  sudo: True
+  tags:
+    - locales
+
+- name: 0. apt-get update
+  apt: update_cache=yes
+
+- name: Install common essentials
+  apt: name={{ item }} state=present
+  with_items:
+    - build-essential
+    - libxslt1-dev
+    - libxml2-dev
+    - python-pycurl
+    - curl
+    - git-core
+    - vim
+    - unzip
+    - tar
+    - gzip

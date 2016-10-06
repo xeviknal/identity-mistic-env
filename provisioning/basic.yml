@@ -1,0 +1,9 @@
+---
+- hosts: all
+  sudo: yes
+  vars:
+    java_version: 8
+    java_subversion: 101
+  roles:
+    - essentials
+    - williamyeh.oracle-java
